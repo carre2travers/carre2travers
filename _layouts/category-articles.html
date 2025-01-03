@@ -1,0 +1,17 @@
+---
+layout: framework
+sidebar: category-list
+---
+
+
+<div class="articles">
+  {% if page.banner == nil %}
+    {% assign banner = page.title %}
+  {% endif %}
+
+  {% assign category_posts = site.posts | where: "category", page.category %}
+  {% assign paginator = category_posts | slice: 0, 20 %}
+
+  {% include views/pagination.html %}
+
+</div>
