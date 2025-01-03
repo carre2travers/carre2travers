@@ -21,9 +21,11 @@
 {%- include functions.html func='get_value' -%}
 {%- assign default_image = return -%}
 
-{%- assign post_image = post.excerpt_image
-  | default: post.banner.image
-  | default: post.banner
+{%- capture images_from_html -%}
+  {{ post.content | split:'<img' | last | split:'src="' | last | split:'"' | first }}
+{%- endcapture -%}
+
+{%- assign post_image = images_from_html
   | default: default_image
   | default: '/assets/images/default-image.jpeg' -%}
 
@@ -43,7 +45,7 @@
   </div>
   <div class="post-excerpt">
     {%- if post_image and post_image != 'NO_EXCERPT_IMAGE' -%}
-    <a  class="post-image" href="{{ post_url }}" style="flex: 0 1 {{ image_width }}">
+    <a class="post-image" href="{{ post_url }}" style="flex: 0 1 {{ image_width }}">
       <div style="background-image: url({{ post_image | relative_url }}); height: {{ image_height }}"></div>
     </a>
     {%- endif -%}
