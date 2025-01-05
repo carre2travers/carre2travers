@@ -244,14 +244,10 @@ kramdown:
   input: GFM
 
 # theme: owner/name --> Don't forget to remove/comment the gem-based theme option
-remote_theme: "jeffreytse/jekyll-theme-yat@v1.10.0"
+remote_theme: "jeffreytse/jekyll-theme-yat"
 
+# Add the following to activate the plugin
 plugins:
   - jekyll-remote-theme
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-paginate
-  - jekyll-spaceship
 
 
