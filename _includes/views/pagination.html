@@ -16,9 +16,10 @@
     {%- if paginator == site or paginator.page == 1 -%}
       {%- assign post_item_class = "top-post" -%}
       {%- assign posts = site.posts
-        | where_exp: "item", "item.top > 0 and item.category contains page.category"
+        | where_exp: "item", "item.top > 0"
         | sort: "top" -%}
-      {%- for post in posts -%}
+      {%- assign filtered_posts = posts | where_exp: "post", "post.category contains page.category" -%}
+      {%- for post in filtered_posts -%}
         {%- include views/pagination-item.html -%}
       {%- endfor -%}
     {%- endif -%}
